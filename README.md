@@ -24,6 +24,3 @@ Aplicação com transformação de arquivo XML para JSON contendo consultas JQue
 
    
     Agora que as páginas já foram geradas, para "navegar" por ela, basta abrir com o navegador o arquivo 'index.html'
-
-
-LINK DO VIDEO: https://drive.google.com/file/d/1WbA3lo6Mgfs7uqmSm_OOeUFs7EeVlPd1/view?usp=share_link
