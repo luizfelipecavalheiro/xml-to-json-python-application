@@ -1,0 +1,220 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "properties": {
+    	"topicMap": {
+        	"$ref": "#/definitions/TopicMap"
+    	}
+    },
+    "definitions": {
+        
+        "TopicMap": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "topic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Topic"
+                    }
+                },
+                "association": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Association"
+                    }
+                }
+            },
+            "required": [
+                "association",
+                "topic"
+            ],
+            "title": "TopicMap"
+        },
+        "Association": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "instanceOf": {
+                    "$ref": "#/definitions/InstanceOf"
+                },
+                "member": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InstanceOf"
+                    }
+                }
+            },
+            "required": [
+                "instanceOf",
+                "member"
+            ],
+            "title": "Association"
+        },
+        "Ref": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "@href": {
+                    "type": "string",
+                    "qt-uri-protocols": [
+                        "http"
+                    ],
+                    "qt-uri-extensions": [
+                        ".html",
+                        ".html "
+                    ]
+                }
+            },
+            "required": [
+                "@href"
+            ],
+            "title": "Ref"
+        },
+        "InstanceOf": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "topicRef": {
+                    "$ref": "#/definitions/Ref"
+                }
+            },
+            "required": [
+                "topicRef"
+            ],
+            "title": "InstanceOf"
+        },
+        "Topic": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "@id": {
+                    "type": "string"
+                },
+                "instanceOf": {
+                    "$ref": "#/definitions/InstanceOf"
+                },
+                "baseName": {
+                    "$ref": "#/definitions/BaseNameUnion"
+                },
+                "occurrence": {
+                    "$ref": "#/definitions/OccurrenceUnion"
+                },
+                "subjectIdentity": {
+                    "$ref": "#/definitions/SubjectIdentity"
+                }
+            },
+            "required": [
+                "@id",
+                "baseName"
+            ],
+            "title": "Topic"
+        },
+        "BaseNameElement": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "baseNameString": {
+                    "type": "string"
+                },
+                "scope": {
+                    "$ref": "#/definitions/InstanceOf"
+                }
+            },
+            "required": [
+                "baseNameString"
+            ],
+            "title": "BaseNameElement"
+        },
+        "PurpleBaseName": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "baseNameString": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "baseNameString"
+            ],
+            "title": "PurpleBaseName"
+        },
+        "OccurrenceElement": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "scope": {
+                    "$ref": "#/definitions/InstanceOf"
+                },
+                "resourceData": {
+                    "type": "string"
+                },
+                "instanceOf": {
+                    "$ref": "#/definitions/InstanceOf"
+                },
+                "resourceRef": {
+                    "$ref": "#/definitions/Ref"
+                }
+            },
+            "required": [],
+            "title": "OccurrenceElement"
+        },
+        "PurpleOccurrence": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "scope": {
+                    "$ref": "#/definitions/InstanceOf"
+                },
+                "resourceData": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "resourceData",
+                "scope"
+            ],
+            "title": "PurpleOccurrence"
+        },
+        "SubjectIdentity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "subjectIndicatorRef": {
+                    "$ref": "#/definitions/Ref"
+                }
+            },
+            "required": [
+                "subjectIndicatorRef"
+            ],
+            "title": "SubjectIdentity"
+        },
+        "BaseNameUnion": {
+            "anyOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BaseNameElement"
+                    }
+                },
+                {
+                    "$ref": "#/definitions/PurpleBaseName"
+                }
+            ],
+            "title": "BaseNameUnion"
+        },
+        "OccurrenceUnion": {
+            "anyOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OccurrenceElement"
+                    }
+                },
+                {
+                    "$ref": "#/definitions/PurpleOccurrence"
+                }
+            ],
+            "title": "OccurrenceUnion"
+        }
+    }
+}
